@@ -94,7 +94,7 @@
 
 <script>
 const SESSION='12';
-let name='',scores={l:0,v:0,w:0,s:0,g:0},writingText='',spokenText='';
+let name='',scores={l:0,v:0,w:0,s:0,g:0},writingText='',spokenText='';try{window.scores=(typeof scores!=='undefined'?scores:(typeof sc!=='undefined'?sc:null));}catch(e){}
 let selectedWord=null,isRec=false,recTime=0,recTimer=null,recognition=null;
 let readingAnswers=[],grammarAnswers=[];
 const readingQBank=[{"q": "Why is Ali calling the landlord?", "opts": ["The heater is broken", "He wants a new job", "He is buying a house"], "correct": 0}, {"q": "How is the apartment?", "opts": ["Very hot", "Very cold", "Very big"], "correct": 1}, {"q": "What polite request does Ali use?", "opts": ["Could you please send someone today?", "Give me money.", "Come now!"], "correct": 0}, {"q": "What might the landlord send?", "opts": ["A friend", "A repair person", "A teacher"], "correct": 1}, {"q": "Why does Ali say thank you?", "opts": ["He is leaving", "He needs help quickly", "He is on vacation"], "correct": 1}];
@@ -472,7 +472,7 @@ try{
     document.body.appendChild(bar);
     document.getElementById('sqa-fresh').onclick=function(){localStorage.removeItem(KEY);bar.remove();};
     document.getElementById('sqa-resume').onclick=function(){try{
-      for(var k in st.g){try{window[k]=st.g[k];}catch(e){}}
+      for(var k in st.g){try{if(window[k]&&typeof window[k]==='object'&&st.g[k]&&typeof st.g[k]==='object'&&!Array.isArray(window[k])){for(var kk in st.g[k])window[k][kk]=st.g[k][kk];}else{window[k]=st.g[k];}}catch(e){}}
       for(var id in st.h){var el=document.getElementById(id);if(el)el.innerHTML=st.h[id];}
       var fs=fields();(st.f||[]).forEach(function(v,i){if(fs[i]!==undefined){try{fs[i].value=v;}catch(e){}}});
       var wc=document.getElementById('wc'),wr=document.getElementById('writing');if(wc&&wr)try{wc.textContent=wr.value.trim().split(/\s+/).filter(Boolean).length;}catch(e){}
